@@ -2,10 +2,29 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  milliseconds: # change this
+  holidays:
+    description: 'Holiday list'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  datadog_api_key:
+    description: 'Datadog api key'
+    required: true
+  datadog_app_key:
+    description: 'Datadog app key'
+    required: true
+  datadog_service_name:
+    description: 'Datadog service name'
+    required: false
+    default: holiday
+  datadog_host:
+    description: 'Datadog event name'
+    required: false
+    default: holiday
+  datadog_tags:
+    description: 'Datadog event name'
+    required: false
+outputs:
+  is_holiday:
+    description: 'Is holiday'
 runs:
   using: 'node16'
   main: 'dist/index.js'

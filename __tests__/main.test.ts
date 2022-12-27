@@ -1,29 +1,30 @@
-import {wait} from '../src/wait'
-import * as process from 'process'
-import * as cp from 'child_process'
-import * as path from 'path'
+import {isHoliday} from '../src/holiday'
 import {expect, test} from '@jest/globals'
+// import {createEvent} from "../src/datadog";
+// import {OK} from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1/models/ServiceCheckStatus";
 
-test('throws invalid number', async () => {
-  const input = parseInt('foo', 10)
-  await expect(wait(input)).rejects.toThrow('milliseconds not a number')
+test('check holiday', async () => {
+  const holidays: string = `
+2022-12-26
+2022-12-27
+2022-12-28
+2022-12-29
+2022-12-30
+2023-01-01
+2023-01-02
+2023-01-03`
+  expect(isHoliday(new Date('2022-12-26'), holidays)).toBeTruthy()
+  expect(isHoliday(new Date('2023-01-30'), holidays)).toBeFalsy()
 })
 
-test('wait 500 ms', async () => {
-  const start = new Date()
-  await wait(500)
-  const end = new Date()
-  var delta = Math.abs(end.getTime() - start.getTime())
-  expect(delta).toBeGreaterThan(450)
-})
-
-// shows how the runner will run a javascript action with env / stdout protocol
-test('test runs', () => {
-  process.env['INPUT_MILLISECONDS'] = '500'
-  const np = process.execPath
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
-  const options: cp.ExecFileSyncOptions = {
-    env: process.env
+/*
+For debug code
+test('check datadog', async () => {
+  try {
+    await createEvent(OK, "test","test","test");
+  } catch (e) {
+    expect(e).toMatch('error');
   }
-  console.log(cp.execFileSync(np, [ip], options).toString())
 })
+
+*/
