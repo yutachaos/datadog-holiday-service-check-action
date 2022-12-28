@@ -1,7 +1,7 @@
 import {client, v1} from '@datadog/datadog-api-client'
 import {ServiceCheckStatus} from '@datadog/datadog-api-client/dist/packages/datadog-api-client-v1'
 
-export function createEvent(
+export function createServiceCheck(
   status: ServiceCheckStatus,
   serviceName: string,
   host: string,
