@@ -29,7 +29,7 @@
     "@datadog/datadog-api-client": "^1.6.0",
     "audit": "^0.0.6",
     "fix": "^0.0.3",
-    "ncc": "^0.2.0",
+    "ncc": "^0.3.6",
     "npm": "^9.2.0"
   },
   "devDependencies": {
