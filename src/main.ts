@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import {createEvent} from './datadog'
+import {createServiceCheck} from './datadog'
 import {isHoliday} from './holiday'
 
 import {
@@ -18,12 +18,10 @@ async function run(): Promise<void> {
     process.env['DD_APP_KEY'] = core.getInput('datadog_app_key')
     const result = isHoliday(new Date(), holidays)
     if (result) {
-      createEvent(CRITICAL, serviceName, host, tags)
+      createServiceCheck(CRITICAL, serviceName, host, tags)
     } else {
-      createEvent(OK, serviceName, host, tags)
+      createServiceCheck(OK, serviceName, host, tags)
     }
-
-    createEvent(OK, serviceName, host, tags)
 
     core.setOutput('is_holiday', result)
   } catch (error) {
