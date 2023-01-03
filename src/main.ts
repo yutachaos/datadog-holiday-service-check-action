@@ -10,17 +10,14 @@ import {
 async function run(): Promise<void> {
   try {
     const holidays: string = core.getInput('holidays')
-    const serviceName: string = core.getInput('holidays')
-    const host: string = core.getInput('datadog_host')
-    const tags: string = core.getInput('datadog_tags')
-
-    process.env['DD_API_KEY'] = core.getInput('datadog_api_key')
-    process.env['DD_APP_KEY'] = core.getInput('datadog_app_key')
+    const serviceCheckName: string = core.getInput('service_check_name')
+    const hostName: string = core.getInput('host_name')
+    const tags: string = core.getInput('tags')
     const result = isHoliday(new Date(), holidays)
     if (result) {
-      createServiceCheck(CRITICAL, serviceName, host, tags)
+      createServiceCheck(CRITICAL, serviceCheckName, hostName, tags)
     } else {
-      createServiceCheck(OK, serviceName, host, tags)
+      createServiceCheck(OK, serviceCheckName, hostName, tags)
     }
 
     core.setOutput('is_holiday', result)

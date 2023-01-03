@@ -1,26 +1,18 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Datadog holiday service check action'
+description: 'Create datadog service check from date list'
+author: 'Yutachaos'
 inputs:
   holidays:
     description: 'Holiday list'
     required: true
-  datadog_api_key:
-    description: 'Datadog api key'
+  service_check_name:
+    description: 'Datadog servicecheck name'
     required: true
-  datadog_app_key:
-    description: 'Datadog app key'
+  host_name:
+    description: 'Datadog servicecheck host name'
     required: true
-  datadog_service_name:
-    description: 'Datadog service name'
-    required: false
-    default: holiday
-  datadog_host:
-    description: 'Datadog event name'
-    required: false
-    default: holiday
-  datadog_tags:
-    description: 'Datadog event name'
+  tags:
+    description: 'Datadog servicecheck check tags'
     required: false
 outputs:
   is_holiday:
