@@ -3,7 +3,7 @@ import {ServiceCheckStatus} from '@datadog/datadog-api-client/dist/packages/data
 
 export function createServiceCheck(
   status: ServiceCheckStatus,
-  serviceName: string,
+  serviceCheckName: string,
   host: string,
   tags: string
 ): void {
@@ -13,7 +13,7 @@ export function createServiceCheck(
   const params: v1.ServiceChecksApiSubmitServiceCheckRequest = {
     body: [
       {
-        check: serviceName,
+        check: serviceCheckName,
         hostName: host,
         status,
         tags: [tags]
